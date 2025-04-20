@@ -1,20 +1,28 @@
-@layout.app({ title: 'Edit post' })
-  <div class="max-w-2xl mx-auto px-6 py-10">
-    <form class="space-y-4" action="{{ `/posts/${post.id}?_method=PATCH` }}" method="post">
-      {{ csrfField() }}
+@layout.app({ title: 'Edit feed' })
 
-      <div>
-        <textarea class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" name="content" required rows="3" placeholder="Share an update...">{{ old('content') || post.content }}</textarea>
+<div class="max-w-2xl mx-auto px-6 py-10 from-cyan-700/10 via-black/30 to-cyan-900/10 backdrop-blur-3xl border border-cyan-500/30 rounded-xl shadow-xl p-6 text-white">
+  <form class="space-y-4" action="{{ `/posts/${post.id}?_method=PATCH` }}" method="post">
+    {{ csrfField() }}
 
-        @inputError('content')
-          <p class="text-xs text-red-600 mt-2">{{ $messages }}</p>
-        @end
-      </div>
+    <div>
+      <textarea
+        class="py-3 px-4 block w-full bg-white/10 backdrop-blur-xl border border-white/30 shadow-sm rounded-xl text-white"
+        name="content"
+        required
+        rows="3"
+        placeholder="Share an update...">{{ old('content', post.content) }}</textarea>
 
-      <button
-        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-        Save
-      </button>
-    </form>
-  </div>
+      @inputError('content')
+        <p class="text-xs text-red-600 mt-2">{{ $messages }}</p>
+      @end
+    </div>
+
+    <button
+      class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gradient-to-r from-cyan-500 via-cyan-600 to-cyan-700 hover:brightness-110 text-white disabled:opacity-50 disabled:pointer-events-none">
+      Simpan
+    </button>
+  </form>
+</div>
+
+<body class="bg-gradient-to-br from-black via-gray-900 to-cyan-950 min-h-screen pt-20 px-4 text-white font-sans">
 @end
